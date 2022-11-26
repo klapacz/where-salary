@@ -2,7 +2,6 @@ lockfileVersion: 5.4
 
 specifiers:
   '@hookform/resolvers': ^2.9.10
-  '@klapacz/errgo': ^0.1.4
   '@magic-sdk/admin': ^1.8.0
   '@prisma/client': ^4.5.0
   '@tanstack/react-query': ^4.16.0
@@ -37,7 +36,6 @@ specifiers:
 
 dependencies:
   '@hookform/resolvers': 2.9.10_react-hook-form@7.39.5
-  '@klapacz/errgo': 0.1.4
   '@magic-sdk/admin': 1.8.0
   '@prisma/client': 4.6.1_prisma@4.6.1
   '@tanstack/react-query': 4.16.1_biqbaboplfbrettd7655fr4n2y
@@ -219,10 +217,6 @@ packages:
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
-
-  /@klapacz/errgo/0.1.4:
-    resolution: {integrity: sha512-4VNNMteCu8l3rRoEKvfN3P9c1BQIj++VJonqQdQbB/Zt6VjZQTX15eGdtfDoGQDknTeFv2KU9Kj4ehn+1Xrvig==}
-    dev: false
 
   /@magic-sdk/admin/1.8.0:
     resolution: {integrity: sha512-9QXSyLM72kKeCwCYYfTBzMQ1ww+bPGFTKoO22bNBhalDC/Z068THc1B6DtzE9kROHLwyBmdBd5o8wDDkvwEwrg==}

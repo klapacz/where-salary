@@ -2,7 +2,7 @@ import { Magic } from "@magic-sdk/admin";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { env } from "../../../env/server.mjs";
-import { wrap } from "@klapacz/errgo";
+import { wrap } from "../../../lib/errgo";
 import { router, publicProcedure, protectedProcedure } from "../trpc";
 
 export const authRouter = router({
@@ -24,11 +24,10 @@ export const authRouter = router({
         throw new TRPCError({ code: "UNAUTHORIZED" });
       }
 
-      const session = await ctx.getSession();
-      session.user = {
+      ctx.req.session.user = {
         email: user.email,
       };
-      session.save();
+      await ctx.req.session.save();
     }),
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";

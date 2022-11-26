@@ -1,31 +1,22 @@
 import type { IronSessionOptions } from "iron-session";
-import { getIronSession } from "iron-session";
-import { withIronSessionSsr } from "iron-session/next";
+import { withIronSessionApiRoute, withIronSessionSsr } from "iron-session/next";
 import type {
   GetServerSidePropsContext,
   GetServerSidePropsResult,
-  NextApiRequest,
-  NextApiResponse,
+  NextApiHandler,
 } from "next";
-import { env } from "../env/server.mjs";
 
-const ironOptions: IronSessionOptions = {
-  cookieName: "cookie",
-  password: env.IRON_SESSION_PASSWORD,
+const sessionOptions: IronSessionOptions = {
+  password: "complex_password_at_least_32_characters_long",
+  cookieName: "myapp_cookiename",
+  // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
   cookieOptions: {
-    secure: env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV === "production",
   },
 };
 
-export async function getSession({
-  req,
-  res,
-}: {
-  req: NextApiRequest;
-  res: NextApiResponse;
-}) {
-  const session = await getIronSession(req, res, ironOptions);
-  return session;
+export function withSessionRoute(handler: NextApiHandler) {
+  return withIronSessionApiRoute(handler, sessionOptions);
 }
 
 export function withSessionSsr<
@@ -35,13 +26,15 @@ export function withSessionSsr<
     context: GetServerSidePropsContext
   ) => GetServerSidePropsResult<P> | Promise<GetServerSidePropsResult<P>>
 ) {
-  return withIronSessionSsr(handler, ironOptions);
+  return withIronSessionSsr(handler, sessionOptions);
 }
+
+export type UserSession = {
+  email: string;
+};
 
 declare module "iron-session" {
   interface IronSessionData {
-    user?: {
-      email: string;
-    };
+    user?: UserSession;
   }
 }

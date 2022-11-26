@@ -1,7 +1,6 @@
 import { type inferAsyncReturnType } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "../../lib/iron-session";
 
 import { prisma } from "../db";
 
@@ -23,9 +22,6 @@ export const createContextInner = async ({
     prisma,
     req,
     res,
-    getSession() {
-      return getSession({ req, res });
-    },
   };
 };
 
