@@ -3,5 +3,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "cSpell.words": ["trpc"]
+  "cSpell.words": ["Authed", "errgo", "hookform", "klapacz", "trpc"],
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }

@@ -1,12 +1,13 @@
 import { type inferAsyncReturnType } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { type Session } from "next-auth";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getSession } from "../../lib/iron-session";
 
-import { getServerAuthSession } from "../common/get-server-auth-session";
 import { prisma } from "../db";
 
 type CreateContextOptions = {
-  session: Session | null;
+  req: NextApiRequest;
+  res: NextApiResponse;
 };
 
 /** Use this helper for:
@@ -14,10 +15,17 @@ type CreateContextOptions = {
  * - trpc's `createSSGHelpers` where we don't have req/res
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  **/
-export const createContextInner = async (opts: CreateContextOptions) => {
+export const createContextInner = async ({
+  req,
+  res,
+}: CreateContextOptions) => {
   return {
-    session: opts.session,
     prisma,
+    req,
+    res,
+    getSession() {
+      return getSession({ req, res });
+    },
   };
 };
 
@@ -28,12 +36,7 @@ export const createContextInner = async (opts: CreateContextOptions) => {
 export const createContext = async (opts: CreateNextContextOptions) => {
   const { req, res } = opts;
 
-  // Get the session from the server using the unstable_getServerSession wrapper function
-  const session = await getServerAuthSession({ req, res });
-
-  return await createContextInner({
-    session,
-  });
+  return await createContextInner({ req, res });
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;
