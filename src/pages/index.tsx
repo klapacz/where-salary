@@ -1,11 +1,36 @@
+import { Magic } from "magic-sdk";
 import { type NextPage } from "next";
+import { useRouter } from "next/router";
 import type { UserSession } from "../lib/iron-session";
 import { withSessionSsr } from "../lib/iron-session";
+import { trpc } from "../lib/trpc";
 
 type Props = { user: UserSession };
 
 const Home: NextPage<Props> = (props) => {
-  return <div>Dashboard, you are logged in as {props.user.email}</div>;
+  const router = useRouter();
+  const logout = trpc.auth.logout.useMutation({
+    onSuccess() {
+      router.push("/login");
+    },
+  });
+
+  return (
+    <div>
+      Dashboard, you are logged in as {props.user.email}
+      <button
+        className="btn"
+        onClick={async () => {
+          await new Magic(
+            process.env.NEXT_PUBLIC_MAGIC_PUB_KEY as string
+          ).user.logout();
+          logout.mutate();
+        }}
+      >
+        Logout
+      </button>
+    </div>
+  );
 };
 
 export const getServerSideProps = withSessionSsr<Props>(

@@ -29,7 +29,8 @@ export const authRouter = router({
       };
       await ctx.req.session.save();
     }),
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
+
+  logout: protectedProcedure.mutation(async ({ ctx }) => {
+    ctx.req.session.destroy();
   }),
 });
