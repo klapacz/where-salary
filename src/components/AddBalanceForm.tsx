@@ -22,6 +22,7 @@ export const addBalanceFormSchema = z.object({
 type AddBalanceFormSchema = z.infer<typeof addBalanceFormSchema>;
 
 export const AddBalanceForm: React.FC = () => {
+	const utils = trpc.useContext();
 	const add = trpc.balance.add.useMutation();
 	const form = useForm<AddBalanceFormSchema>({
 		resolver: zodResolver(addBalanceFormSchema),
@@ -35,6 +36,7 @@ export const AddBalanceForm: React.FC = () => {
 		<form
 			onSubmit={form.handleSubmit((values) => {
 				add.mutate(values);
+				utils.balance.list.invalidate();
 			})}
 		>
 			<TextField
