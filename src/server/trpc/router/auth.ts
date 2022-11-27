@@ -24,6 +24,20 @@ export const authRouter = router({
 				throw new TRPCError({ code: "UNAUTHORIZED" });
 			}
 
+			const existing = await ctx.prisma.user.findFirst({
+				where: {
+					email: user.email,
+				},
+			});
+
+			if (!existing) {
+				await ctx.prisma.user.create({
+					data: {
+						email: user.email,
+					},
+				});
+			}
+
 			ctx.req.session.user = {
 				email: user.email,
 			};
