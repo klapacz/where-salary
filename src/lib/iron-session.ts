@@ -32,6 +32,7 @@ export function withSessionSsr<
 
 export type UserSession = {
 	email: string;
+	id: string;
 };
 
 declare module "iron-session" {

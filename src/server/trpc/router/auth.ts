@@ -30,16 +30,23 @@ export const authRouter = router({
 				},
 			});
 
-			if (!existing) {
-				await ctx.prisma.user.create({
-					data: {
-						email: user.email,
-					},
-				});
+			if (existing) {
+				ctx.req.session.user = {
+					email: user.email,
+					id: existing.id,
+				};
+				await ctx.req.session.save();
+				return;
 			}
 
+			const created = await ctx.prisma.user.create({
+				data: {
+					email: user.email,
+				},
+			});
 			ctx.req.session.user = {
 				email: user.email,
+				id: created.id,
 			};
 			await ctx.req.session.save();
 		}),

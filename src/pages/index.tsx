@@ -1,6 +1,7 @@
 import { Magic } from "magic-sdk";
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
+import { AddBalanceForm } from "../components/AddBalanceForm";
 import type { UserSession } from "../lib/iron-session";
 import { withSessionSsr } from "../lib/iron-session";
 import { trpc } from "../lib/trpc";
@@ -29,6 +30,7 @@ const Home: NextPage<Props> = (props) => {
 			>
 				Logout
 			</button>
+			<AddBalanceForm />
 		</div>
 	);
 };
