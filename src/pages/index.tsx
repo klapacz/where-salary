@@ -1,8 +1,8 @@
 import { Magic } from "magic-sdk";
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
-import { AddBalanceForm } from "../components/AddBalanceForm";
-import { BalancesTable } from "../components/BalancesTable";
+import { AddBalanceForm } from "../components/add-balance-form";
+import { BalancesTable } from "../components/balances-table";
 import type { UserSession } from "../lib/iron-session";
 import { withSessionSsr } from "../lib/iron-session";
 import { trpc } from "../lib/trpc";

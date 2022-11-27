@@ -2,7 +2,7 @@ import React from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextField } from "./TextField";
+import { TextField } from "./text-field";
 import { day } from "../lib/dayjs";
 import { trpc } from "../lib/trpc";
 

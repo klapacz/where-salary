@@ -1,4 +1,4 @@
-import { addBalanceFormSchema } from "../../../components/AddBalanceForm";
+import { addBalanceFormSchema } from "../../../components/add-balance-form";
 
 import { router, protectedProcedure } from "../trpc";
 
