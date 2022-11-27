@@ -1,8 +1,8 @@
 {
-  "recommendations": [
-    "streetsidesoftware.code-spell-checker",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "prisma.prisma"
-  ]
+	"recommendations": [
+		"streetsidesoftware.code-spell-checker",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"prisma.prisma"
+	]
 }

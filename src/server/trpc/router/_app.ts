@@ -3,8 +3,8 @@ import { authRouter } from "./auth";
 import { exampleRouter } from "./example";
 
 export const appRouter = router({
-  example: exampleRouter,
-  auth: authRouter,
+	example: exampleRouter,
+	auth: authRouter,
 });
 
 // export type definition of API

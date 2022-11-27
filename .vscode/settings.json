@@ -1,10 +1,10 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "cSpell.words": ["Authed", "errgo", "hookform", "klapacz", "trpc"],
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
-  }
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"cSpell.words": ["Authed", "errgo", "hookform", "klapacz", "trpc"],
+	"[prisma]": {
+		"editor.defaultFormatter": "Prisma.prisma"
+	}
 }

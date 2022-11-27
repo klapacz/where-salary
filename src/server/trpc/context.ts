@@ -5,8 +5,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../db";
 
 type CreateContextOptions = {
-  req: NextApiRequest;
-  res: NextApiResponse;
+	req: NextApiRequest;
+	res: NextApiResponse;
 };
 
 /** Use this helper for:
@@ -15,14 +15,14 @@ type CreateContextOptions = {
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  **/
 export const createContextInner = async ({
-  req,
-  res,
+	req,
+	res,
 }: CreateContextOptions) => {
-  return {
-    prisma,
-    req,
-    res,
-  };
+	return {
+		prisma,
+		req,
+		res,
+	};
 };
 
 /**
@@ -30,9 +30,9 @@ export const createContextInner = async ({
  * @link https://trpc.io/docs/context
  **/
 export const createContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
+	const { req, res } = opts;
 
-  return await createContextInner({ req, res });
+	return await createContextInner({ req, res });
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;

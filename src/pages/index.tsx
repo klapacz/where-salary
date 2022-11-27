@@ -8,48 +8,48 @@ import { trpc } from "../lib/trpc";
 type Props = { user: UserSession };
 
 const Home: NextPage<Props> = (props) => {
-  const router = useRouter();
-  const logout = trpc.auth.logout.useMutation({
-    onSuccess() {
-      router.push("/login");
-    },
-  });
+	const router = useRouter();
+	const logout = trpc.auth.logout.useMutation({
+		onSuccess() {
+			router.push("/login");
+		},
+	});
 
-  return (
-    <div>
-      Dashboard, you are logged in as {props.user.email}
-      <button
-        className="btn"
-        onClick={async () => {
-          await new Magic(
-            process.env.NEXT_PUBLIC_MAGIC_PUB_KEY as string
-          ).user.logout();
-          logout.mutate();
-        }}
-      >
-        Logout
-      </button>
-    </div>
-  );
+	return (
+		<div>
+			Dashboard, you are logged in as {props.user.email}
+			<button
+				className="btn"
+				onClick={async () => {
+					await new Magic(
+						process.env.NEXT_PUBLIC_MAGIC_PUB_KEY as string
+					).user.logout();
+					logout.mutate();
+				}}
+			>
+				Logout
+			</button>
+		</div>
+	);
 };
 
 export const getServerSideProps = withSessionSsr<Props>(
-  async function getServerSideProps({ req }) {
-    if (!req.session.user) {
-      return {
-        redirect: {
-          permanent: true,
-          destination: "/login",
-        },
-      };
-    }
+	async function getServerSideProps({ req }) {
+		if (!req.session.user) {
+			return {
+				redirect: {
+					permanent: true,
+					destination: "/login",
+				},
+			};
+		}
 
-    return {
-      props: {
-        user: req.session.user,
-      },
-    };
-  }
+		return {
+			props: {
+				user: req.session.user,
+			},
+		};
+	}
 );
 
 export default Home;
