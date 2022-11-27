@@ -31,7 +31,7 @@ const Home: NextPage = () => {
 					process.env.NEXT_PUBLIC_MAGIC_PUB_KEY as string
 				).auth.loginWithMagicLink({
 					email: data.email,
-					redirectURI: new URL("/callback", window.location.origin).href, // optional redirect back to your app after magic link is clicked
+					redirectURI: new URL("/", window.location.origin).href, // optional redirect back to your app after magic link is clicked
 				});
 				if (typeof didToken !== "string") {
 					console.error("returned token is not string");
