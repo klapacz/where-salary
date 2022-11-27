@@ -18,10 +18,19 @@ export const balanceRouter = router({
 			});
 		}),
 	list: protectedProcedure.query(async ({ ctx }) => {
-		return await ctx.prisma.balance.findMany({
-			where: {
-				user_id: ctx.session.user.id,
-			},
-		});
+		const [balances, aggregated] = await ctx.prisma.$transaction([
+			ctx.prisma.balance.findMany({
+				where: {
+					user_id: ctx.session.user.id,
+				},
+			}),
+			ctx.prisma.balance.aggregate({
+				_sum: {
+					value: true,
+				},
+			}),
+		]);
+
+		return { balances, aggregated };
 	}),
 });

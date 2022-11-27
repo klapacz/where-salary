@@ -34,7 +34,12 @@ const Home: NextPage<Props> = (props) => {
 				Logout
 			</button>
 			<AddBalanceForm />
-			{isSuccess && <BalancesTable balances={data} />}
+			{isSuccess ? (
+				<>
+					Total balance: {data.aggregated._sum.value?.toFixed(2) ?? "0.00"}
+					<BalancesTable balances={data.balances} />
+				</>
+			) : null}
 		</div>
 	);
 };
