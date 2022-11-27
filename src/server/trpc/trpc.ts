@@ -1,5 +1,5 @@
 import { initTRPC, TRPCError } from "@trpc/server";
-import superjson from "superjson";
+import superjson from "../../lib/superjson";
 
 import { type Context } from "./context";
 

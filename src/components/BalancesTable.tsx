@@ -4,6 +4,7 @@ import {
 	getCoreRowModel,
 	useReactTable,
 } from "@tanstack/react-table";
+import type Decimal from "decimal.js";
 import { Table } from "./table";
 const columnHelper = createColumnHelper<balance>();
 
@@ -13,7 +14,7 @@ const columns = [
 		header: () => "Description",
 	}),
 	columnHelper.accessor("value", {
-		cell: (info) => info.getValue(),
+		cell: (info) => info.getValue<Decimal>().toFixed(2),
 		header: () => "Balance",
 	}),
 ];

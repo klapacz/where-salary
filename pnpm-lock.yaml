@@ -20,6 +20,7 @@ specifiers:
   clsx: ^1.2.1
   daisyui: ^2.42.1
   dayjs: ^1.11.6
+  decimal.js: ^10.4.2
   eslint: ^8.26.0
   eslint-config-next: 13.0.2
   iron-session: ^6.3.1
@@ -50,6 +51,7 @@ dependencies:
   clsx: 1.2.1
   daisyui: 2.42.1_2lwn2upnx27dqeg6hqdu7sq75m
   dayjs: 1.11.6
+  decimal.js: 10.4.2
   iron-session: 6.3.1_next@13.0.2
   magic-sdk: 10.1.0
   next: 13.0.2_biqbaboplfbrettd7655fr4n2y
@@ -1384,6 +1386,10 @@ packages:
     dependencies:
       ms: 2.1.2
     dev: true
+
+  /decimal.js/10.4.2:
+    resolution: {integrity: sha512-ic1yEvwT6GuvaYwBLLY6/aFFgjZdySKTE8en/fkU3QICTmRtgtSlFn0u0BXN06InZwtfCelR7j8LRiDI/02iGA==}
+    dev: false
 
   /decode-uri-component/0.2.0:
     resolution: {integrity: sha512-hjf+xovcEn31w/EUYdTXQh/8smFL/dzYjohQGEIgjyNavaJfBY2p5F527Bo1VPATxv0VYTUC2bOcXvqFwk78Og==}
