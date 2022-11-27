@@ -5,9 +5,10 @@ import type {
 	GetServerSidePropsResult,
 	NextApiHandler,
 } from "next";
+import { env } from "../env/server.mjs";
 
 const sessionOptions: IronSessionOptions = {
-	password: "complex_password_at_least_32_characters_long",
+	password: env.IRON_SESSION_PASSWORD,
 	cookieName: "myapp_cookiename",
 	// secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
 	cookieOptions: {
